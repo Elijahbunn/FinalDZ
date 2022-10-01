@@ -8,7 +8,8 @@ FillArray(arr);
 PrintArray(arr);
 Console.WriteLine();
 RebuildArray(arr, arr2);
-
+string[] arrayS = arr2.ToArray();
+PrintStrings(arrayS);
 
 void FillArray(string[,] array0)
 {
@@ -17,9 +18,9 @@ void FillArray(string[,] array0)
     {
         for (int j = 0; j < array0.GetLength(1); j++)
         {
-            Console.Write($"Задачйте переменную {number}:  ");
+            Console.Write($"Задайте переменную {number}:  ");
             number++;
-            array0[i, j] = Convert.ToString(Console.ReadLine() ?? "0");;
+            array0[i, j] = Convert.ToString(Console.ReadLine() ?? "0"); ;
             Console.WriteLine();
         }
     }
@@ -45,12 +46,14 @@ void RebuildArray(string[,] array, List<string> array2)
         {
             int length = array[i, j].Length;
             if (length <= 3) array2.Add(new String(array[i, j]));
-            
         }
     }
-    string[] arrayS = array2.ToArray();
-    foreach (string i in arrayS)
+}
+
+void PrintStrings(string[] array)
+{
+    for (int i = 0; i < array.Length; i++)
     {
-        Console.Write($"{i} ");
+        Console.Write($"{array[i]} ");
     }
 }
