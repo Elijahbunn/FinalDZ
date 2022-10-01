@@ -3,11 +3,12 @@ int n = int.Parse(Console.ReadLine() ?? "0");
 Console.WriteLine("Enter m: ");
 int m = int.Parse(Console.ReadLine() ?? "0");
 string[,] arr = new string[n, m];
+string[,] arr2 = new string[n, m];
 FillArray(arr);
 PrintArray(arr);
 Console.WriteLine();
-// RebuildArray(arr);
-// PrintArray(arr);
+RebuildArray(arr, arr2);
+PrintArray(arr2);
 
 
 void FillArray(string[,] array0)
@@ -37,23 +38,20 @@ void PrintArray(string[,] array)
     }
 }
 
-// void RebuildArray(string[,] array)
-// {
-//     for (int i = 0; i < array.GetLength(0); i++)
-//     {
-//         for (int j = i + 1; j < array.GetLength(1); j++)
-//         {
-//             if (n == m)
-//             {
-//                 int tmp = array[i, j];
-//                 array[i, j] = array[j, i];
-//                 array[j, i] = tmp;
-//             }
-//         }
-//     }
-//     if (n != m)
-//     {
-//         Console.WriteLine("Matrix imposible rebuilding");
-//         Console.WriteLine();
-//     }
-// }
+void RebuildArray(string[,] array, string[,] array2)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            int length = array[i, j].Length;
+            //Console.WriteLine($"{length}");
+            Random random = new Random();
+            int nowCurrent = random.Next(0, length);
+            int s = random.Next(1, 3);
+            string current = Convert.ToString(array[i,j]);
+            string substring = current.Substring(nowCurrent, s);
+            array2[i, j] = substring;
+        }
+    }
+}
